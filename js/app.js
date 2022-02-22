@@ -2070,7 +2070,7 @@
     }
     t.emit("touchStart", o);
   }
-  function F(e) {
+  function q(e) {
     const t = p(),
       s = this,
       i = s.touchEventsData,
@@ -2229,7 +2229,7 @@
       s.updateProgress(i.currentTranslate),
       s.setTranslate(i.currentTranslate));
   }
-  function j(e) {
+  function F(e) {
     const t = this,
       s = t.touchEventsData,
       { params: i, touches: n, rtlTranslate: r, slidesGrid: a, enabled: l } = t;
@@ -2319,7 +2319,7 @@
           "prev" === t.swipeDirection && t.slideTo(u));
     }
   }
-  function q() {
+  function j() {
     const e = this,
       { params: t, el: s } = e;
     if (s && 0 === s.offsetWidth) return;
@@ -2408,10 +2408,10 @@
             l.ios || l.android
               ? "resize orientationchange observerUpdate"
               : "resize observerUpdate",
-            q,
+            j,
             !0
           )
-        : e[u]("observerUpdate", q, !0);
+        : e[u]("observerUpdate", j, !0);
   };
   const K = {
       attachEvents: function () {
@@ -2419,8 +2419,8 @@
           t = p(),
           { params: s, support: i } = e;
         (e.onTouchStart = H.bind(e)),
-          (e.onTouchMove = F.bind(e)),
-          (e.onTouchEnd = j.bind(e)),
+          (e.onTouchMove = q.bind(e)),
+          (e.onTouchEnd = F.bind(e)),
           s.cssMode && (e.onScroll = V.bind(e)),
           (e.onClick = R.bind(e)),
           i.touch && !X && (t.addEventListener("touchstart", Y), (X = !0)),
@@ -3743,6 +3743,17 @@
           ? t.classList.remove("_active")
           : (document
               .querySelectorAll(".acordeon__item")
+              .forEach((e) => e.classList.remove("_active")),
+            t.classList.toggle("_active"));
+      })
+    ),
+    document.querySelectorAll(".burger-acordeon__trigger").forEach((e) =>
+      e.addEventListener("click", () => {
+        const t = e.parentNode;
+        t.classList.contains("_active")
+          ? t.classList.remove("_active")
+          : (document
+              .querySelectorAll(".menu__item")
               .forEach((e) => e.classList.remove("_active")),
             t.classList.toggle("_active"));
       })
